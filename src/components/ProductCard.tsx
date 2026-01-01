@@ -15,7 +15,7 @@ export default function ProductCard({ product }: Props) {
           alt={product.name}
         />
 
-        <div className="p-4">
+        <div className="p-3 sm:p-4">
           <h3 className="font-medium text-gray-900">{product.name}</h3>
           <p className="text-sm text-gray-600 mt-1 line-clamp-2">
             {product.description}
