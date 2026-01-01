@@ -4,8 +4,8 @@ import { products } from "@/data/products";
 
 export default function HomePage() {
   return (
-    <main className="max-w-7xl mx-auto px-6 py-10">
-      <h1 className="text-2xl font-semibold mb-8">
+    <main className="max-w-7xl mx-auto px-6 py-14">
+      <h1 className="text-2xl font-medium leading-tight text-text-primary mb-8 font-serif">
         Featured Products
       </h1>
 

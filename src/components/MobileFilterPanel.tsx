@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProductFilters from "./ProductFilters";
 
 type Props = {
@@ -11,28 +11,26 @@ type Props = {
 export default function MobileFilterPanel({ selectedCollection, sort }: Props) {
   const [open, setOpen] = useState(false);
   const [showBar, setShowBar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Show bar when scrolling up
-      if (currentScrollY < lastScrollY) {
+      if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
+        // scrolling down
+        setShowBar(false);
+      } else {
+        // scrolling up
         setShowBar(true);
       }
 
-      // Hide bar when scrolling down
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        setShowBar(false);
-      }
-
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <>
@@ -71,7 +69,7 @@ export default function MobileFilterPanel({ selectedCollection, sort }: Props) {
 
       {/* Bottom Sheet */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black/40">
+        <div className="fixed inset-0 z-40 bg-black/40">
           <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-xl p-4 max-h-[80vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
               <h2 className="font-medium">Filter & Sort</h2>

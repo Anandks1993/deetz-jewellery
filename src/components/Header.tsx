@@ -15,19 +15,19 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-black/95 backdrop-blur border-b border-white/10">
+    <header className="bg-surface-card border-b border-border-subtle sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Brand */}
         <Link
           href="/"
-          className="text-lg font-semibold tracking-wide text-white"
+          className="text-brand-gold font-semibold tracking-wide font-serif"
           onClick={() => setMenuOpen(false)}
         >
           Deetz Jewellery
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+        <nav className="hidden md:flex items-center gap-8 text-sm font-normal">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
 
@@ -37,8 +37,8 @@ export default function Header() {
                 href={link.href}
                 className={`transition ${
                   isActive
-                    ? "text-white border-b-2 border-white pb-1"
-                    : "text-white/80 hover:text-white"
+                    ? "text-brand-gold border-b-2 border-brand-gold pb-1"
+                    : "text-text-secondary hover:text-brand-gold"
                 }`}
               >
                 {link.label}
@@ -49,7 +49,7 @@ export default function Header() {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-text-primary"
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-label="Toggle navigation"
         >
@@ -67,8 +67,8 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-black">
-          <nav className="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+        <div className="md:hidden border-t border-border-subtle bg-surface-card">
+          <nav className="flex flex-col px-6 py-4 gap-4 text-sm font-normal">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
 
@@ -79,8 +79,8 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className={`transition ${
                     isActive
-                      ? "text-white"
-                      : "text-white/80 hover:text-white"
+                      ? "text-brand-gold"
+                      : "text-text-secondary hover:text-brand-gold"
                   }`}
                 >
                   {link.label}

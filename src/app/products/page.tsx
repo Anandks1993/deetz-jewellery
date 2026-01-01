@@ -11,15 +11,13 @@ type MetadataProps = {
   }>;
 };
 
-export async function generateMetadata(
-  { searchParams }: MetadataProps
-): Promise<Metadata> {
+export async function generateMetadata({
+  searchParams,
+}: MetadataProps): Promise<Metadata> {
   const params = searchParams ? await searchParams : {};
   const collectionId = params.collection;
 
-  const collection = collections.find(
-    (c) => c.id === collectionId
-  );
+  const collection = collections.find((c) => c.id === collectionId);
 
   if (collection) {
     return {
@@ -40,7 +38,6 @@ export async function generateMetadata(
     },
   };
 }
-
 
 type Props = {
   searchParams?: Promise<{
@@ -77,8 +74,8 @@ export default async function ProductsPage({ searchParams }: Props) {
   );
 
   return (
-    <main className="max-w-7xl mx-auto px-6 py-10 pt-16 md:pt-10">
-      <h1 className="text-2xl font-semibold mb-6">
+    <main className="max-w-7xl mx-auto px-6 py-14 pt-16 md:pt-10">
+      <h1 className="text-2xl font-medium leading-tight text-text-primary mb-6 font-serif">
         {currentCollection ? currentCollection.label : "All Products"}
       </h1>
 
@@ -92,17 +89,19 @@ export default async function ProductsPage({ searchParams }: Props) {
         {/* Desktop filters */}
         <aside className="hidden md:block md:col-span-1">
           <div className="sticky top-24">
-            <ProductFilters
-              selectedCollection={selectedCollection}
-              sort={sort}
-            />
+            <div className="bg-surface-card border border-border-subtle rounded-lg p-4">
+              <ProductFilters
+                selectedCollection={selectedCollection}
+                sort={sort}
+              />
+            </div>
           </div>
         </aside>
 
         {/* Product Grid */}
         <section className="md:col-span-3">
           {filteredProducts.length === 0 ? (
-            <p className="text-gray-600">No products found.</p>
+            <p className="text-text-secondary">No products found.</p>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
               {filteredProducts.map((product) => (

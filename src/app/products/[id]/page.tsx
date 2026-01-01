@@ -47,7 +47,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const collection = collections.find((c) => c.id === product.collection);
 
   return (
-    <main className="max-w-7xl mx-auto px-6 py-10">
+    <main className="max-w-7xl mx-auto px-6 py-14">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -65,15 +65,19 @@ export default async function ProductDetailPage({ params }: Props) {
 
         {/* Details */}
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-medium text-text-primary font-serif">
             {product.name}
           </h1>
 
-          <p className="mt-4 text-gray-600">{product.description}</p>
+          <p className="mt-4 text-text-secondary leading-relaxed">
+            {product.description}
+          </p>
 
-          <p className="mt-6 text-xl font-semibold text-gray-900">
+
+          <p className="mt-6 text-xl font-semibold text-brand-gold">
             {product.price} {product.currency}
           </p>
+
 
           <button
             disabled

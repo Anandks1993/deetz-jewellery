@@ -18,7 +18,7 @@ export default function Breadcrumbs({ items }: Props) {
             {item.href ? (
               <Link
                 href={item.href}
-                className="hover:text-gray-900 transition"
+                className="text-sm text-text-secondary hover:text-brand-gold transition"
               >
                 {item.label}
               </Link>
@@ -29,7 +29,7 @@ export default function Breadcrumbs({ items }: Props) {
             )}
 
             {index < items.length - 1 && (
-              <span className="text-gray-400">/</span>
+              <span className="text-sm text-text-primary font-medium">/</span>
             )}
           </li>
         ))}

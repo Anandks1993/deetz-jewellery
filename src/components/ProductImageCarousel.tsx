@@ -24,7 +24,7 @@ export default function ProductImageCarousel({ images, alt }: Props) {
   };
 
   return (
-    <div className="relative aspect-square bg-gray-100 overflow-hidden">
+    <div className="relative aspect-square bg-surface-background">
       <Image
         src={images[current]}
         alt={alt}
