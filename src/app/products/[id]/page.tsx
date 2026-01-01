@@ -1,3 +1,5 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { collections } from "@/data/collections";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import ProductImageCarousel from "@/components/ProductImageCarousel";
@@ -42,8 +44,21 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
+  const collection = collections.find((c) => c.id === product.collection);
+
   return (
     <main className="max-w-7xl mx-auto px-6 py-10">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Products", href: "/products" },
+          {
+            label: collection?.label ?? "Collection",
+            href: `/products?collection=${product.collection}`,
+          },
+          { label: product.name },
+        ]}
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Images */}
         <ProductImageCarousel images={product.images} alt={product.name} />
